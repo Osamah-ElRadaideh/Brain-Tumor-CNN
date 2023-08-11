@@ -5,11 +5,3 @@ to train or evaluate, download the dataset from https://www.kaggle.com/datasets/
 the first 350 examples of the testing set has been used as a validation set, while the evaluation runs on the remaining examples
 Training for 250 epochs results in a test accuracy of 95.73%
 
-
-requirements: 
-einops==0.6.1
-lazy_dataset==0.0.14
-numpy==1.23.5
-opencv_python==4.7.0.72
-torch==1.13.1+cu117
-tqdm==4.64.1
