@@ -21,7 +21,7 @@ def main(image_path):
             image = einops.rearrange(image,'b f -> 1 1 b f')
             image = torch.Tensor(image).to(device=device)
             output = model(image)
-            probs = F.softmax(output)[0]
+            probs = F.softmax(output,dim=-1)[0]
             probs = torch.mul(probs,100)
             print(f'classification probabilities:')
             print(f'glioma: {probs[0]}',f'meningioma: {probs[1]}',f'no tumor: {probs[2]}',f'pituitary tumor: {probs[3]}',sep='\n')
