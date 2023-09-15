@@ -3,13 +3,12 @@ from pathlib import Path
 
 class BrainTumor():
     def __init__(self):
-        self.base_path = Path(__file__).parent
-  
+        pass
     
     def get_item(self,index):
         return self.dataset[index]
     def get_dataset(self,subset):
-        self.dataset = load_json(f'{self.base_path}\\{subset}.json')
+        self.dataset = load_json(f'D:\\Datasets\\brain-tumor\\{subset}.json')
         return self.dataset
 
 

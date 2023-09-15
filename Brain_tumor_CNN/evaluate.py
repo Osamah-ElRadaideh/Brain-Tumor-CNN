@@ -8,8 +8,7 @@ from utils import collate
 from model import Network
 from einops import einops
 from tqdm import tqdm
-import torch.nn as nn
-import os 
+from pathlib import Path
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 db = BrainTumor()
 
@@ -30,13 +29,14 @@ def prepare_dataset(dataset,batch_size=16):
 
 
 model = Network().to(device=device)
-PATH = torch.load('image_classification\model.pth')
+PATH = directory = Path(__file__).parent
+PATH = torch.load("D:\\trained_models\\image_classification\\model.pth")
 model.load_state_dict(PATH)
 model.eval()
 with torch.no_grad():
     t_ds = prepare_dataset(t_ds[350:],batch_size=1)
     correct = 0
-    for batch in t_ds:
+    for batch in tqdm(t_ds):
         images = batch['image']
         images = torch.Tensor(einops.rearrange(images,'b h w -> b 1 h w ')).to(device=device)
         targets = torch.Tensor(batch['target_label']).to(device=device)
